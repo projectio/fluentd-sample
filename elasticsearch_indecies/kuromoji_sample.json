@@ -1,0 +1,21 @@
+// https://medium.com/hello-elasticsearch/a52fd3ac783e
+{
+  "index": {
+    "analysis": {
+      "tokenizer": {
+        "kuromoji_user_dict": {
+          "discard_punctuation": "false",
+          "mode": "extended",
+          "type": "kuromoji_tokenizer",
+          "user_dictionary": "userdict_ja.txt"
+        }
+      },
+      "analyzer": {
+        "my_analyzer": {
+          "tokenizer": "kuromoji_user_dict",
+          "type": "custom"
+        }
+      }
+    }
+  }
+}
