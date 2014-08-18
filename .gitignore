@@ -1,0 +1,20 @@
+# disable all
+/*
+ 
+# enable files
+!/.gitignore
+!/dummer.conf.rb
+!/crawl.rb
+!/m.rb
+!/Gemfile
+!/README.md
+!/Vagrantfile
+ 
+# enable dirs
+!/ansible
+!/samples
+ 
+# disable extra files
+/samples/*.log
+
+# disable extra dirs

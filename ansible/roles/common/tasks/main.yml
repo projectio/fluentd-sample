@@ -1,0 +1,67 @@
+- name: unregister iptables service
+  service: name=iptables runlevel=no enabled=no
+
+- name: stopping services
+  service: name={{ item }} state=stopped
+  with_items:
+    - iptables
+
+- name: copy epel.repo
+  copy: src=etc/yum.repos.d/epel.repo dest=/etc/yum.repos.d/epel.repo
+
+- name: copy rpm
+  copy: src=RPM-GPG-KEY-EPEL-6 dest=/usr/local/src/RPM-GPG-KEY-EPEL-6
+
+- name: import rpm key
+  rpm_key: key=/usr/local/src/RPM-GPG-KEY-EPEL-6 state=present
+
+- name: installing packages with epel
+  yum: name={{ item }} state=present enablerepo=epel
+  with_items:
+    - vim
+    - curl
+    - git
+    - ntp
+    - ntpdate
+    - gcc
+    - gcc-c++
+    - zlib-devel
+    - readline-devel
+    - libcurl-devel
+    - java-1.7.0-openjdk
+
+- name: installing httpd
+  yum: name={{ item }} state=present enablerepo=epel
+  with_items:
+    - httpd
+
+- name: restarting the httpd
+  service: name={{ item }} state=restarted
+  with_items:
+    - httpd
+
+- name: create a dir. /etc/td-agent/td-agent.conf.d
+  file: path=/etc/td-agent/td-agent.conf.d state=directory owner=root group=root mode=0775
+
+- name: copy /etc/td-agent/*
+  template: src=etc/td-agent/{{ item }}.conf dest=/etc/td-agent/{{ item }}.conf
+  with_items:
+    - td-agent
+
+- name: copy /etc/td-agent/logrotate.d/*
+  template: src=etc/td-agent/logrotate.d/{{ item }} dest=/etc/td-agent/logrotate.d/{{ item }}
+  with_items:
+    - td-agent.logrotate
+
+- name: copy /etc/td-agent/prelink.conf.d/*
+  template: src=etc/td-agent/prelink.conf.d/{{ item }}.conf dest=/etc/td-agent/prelink.conf.d/{{ item }}.conf
+  with_items:
+    - td-agent
+
+- name: copy /etc/td-agent/td-agent.conf.d/*
+  template: src=etc/td-agent/td-agent.conf.d/{{ item }}.conf dest=/etc/td-agent/td-agent.conf.d/{{ item }}.conf
+  with_items:
+    - httpd
+
+- name: restarting the td-agent
+  service: name=td-agent state=restarted
