@@ -39,29 +39,3 @@
   service: name={{ item }} state=restarted
   with_items:
     - httpd
-
-- name: create a dir. /etc/td-agent/td-agent.conf.d
-  file: path=/etc/td-agent/td-agent.conf.d state=directory owner=root group=root mode=0775
-
-- name: copy /etc/td-agent/*
-  template: src=etc/td-agent/{{ item }}.conf dest=/etc/td-agent/{{ item }}.conf
-  with_items:
-    - td-agent
-
-- name: copy /etc/td-agent/logrotate.d/*
-  template: src=etc/td-agent/logrotate.d/{{ item }} dest=/etc/td-agent/logrotate.d/{{ item }}
-  with_items:
-    - td-agent.logrotate
-
-- name: copy /etc/td-agent/prelink.conf.d/*
-  template: src=etc/td-agent/prelink.conf.d/{{ item }}.conf dest=/etc/td-agent/prelink.conf.d/{{ item }}.conf
-  with_items:
-    - td-agent
-
-- name: copy /etc/td-agent/td-agent.conf.d/*
-  template: src=etc/td-agent/td-agent.conf.d/{{ item }}.conf dest=/etc/td-agent/td-agent.conf.d/{{ item }}.conf
-  with_items:
-    - httpd
-
-- name: restarting the td-agent
-  service: name=td-agent state=restarted
