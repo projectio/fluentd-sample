@@ -1,0 +1,166 @@
+{
+  "mappings": {
+    "status": {
+      "properties": {
+        "created_at": {
+          "type": "date",
+          "format": "dateOptionalTime"
+        },
+        "hashtag": {
+          "properties": {
+            "end": {
+              "type": "long"
+            },
+            "start": {
+              "type": "long"
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        },
+        "in_reply": {
+          "properties": {
+            "status": {
+              "type": "long"
+            },
+            "user_id": {
+              "type": "long"
+            },
+            "user_screen_name": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "language": {
+          "type": "string",
+          "index": "not_analyzed"
+        },
+        "link": {
+          "properties": {
+            "display_url": {
+              "type": "string"
+            },
+            "end": {
+              "type": "long"
+            },
+            "expand_url": {
+              "type": "string"
+            },
+            "start": {
+              "type": "long"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "location": {
+          "type": "geo_point"
+        },
+        "mention": {
+          "properties": {
+            "end": {
+              "type": "long"
+            },
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            },
+            "screen_name": {
+              "type": "string",
+              "index": "not_analyzed"
+            },
+            "start": {
+              "type": "long"
+            }
+          }
+        },
+        "place": {
+          "properties": {
+            "country": {
+              "type": "string"
+            },
+            "country_code": {
+              "type": "string"
+            },
+            "full_name": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "retweet": {
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "retweet_count": {
+              "type": "long"
+            },
+            "user_id": {
+              "type": "long"
+            },
+            "user_screen_name": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        },
+        "retweet_count": {
+          "type": "long"
+        },
+        "source": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "analyzer": "kuromoji"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "user": {
+          "properties": {
+            "description": {
+              "type": "string"
+            },
+            "id": {
+              "type": "long"
+            },
+            "location": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "profile_image_url": {
+              "type": "string"
+            },
+            "profile_image_url_https": {
+              "type": "string"
+            },
+            "screen_name": {
+              "type": "string",
+              "index": "not_analyzed"
+            }
+          }
+        }
+      }
+    }
+  }
+}

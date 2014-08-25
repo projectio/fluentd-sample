@@ -35,5 +35,12 @@
   with_items:
     - httpd
 
+- name: installing fluentd plugins
+  shell: >-
+    {{ fluent_home }}/ruby/bin/fluent-gem install {{ item }}
+  ignore_errors: yes
+  with_items:
+    - fluent-plugin-elasticsearch
+
 - name: restarting the td-agent
   service: name=td-agent state=restarted

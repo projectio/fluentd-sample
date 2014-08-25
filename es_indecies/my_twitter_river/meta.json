@@ -1,0 +1,17 @@
+{
+  "type": "twitter",
+  "twitter": {
+    "oauth": {
+      "consumer_key": "NYwWKoyOyq2jkXRm3YtPzpsRv",
+      "consumer_secret": "arxb83D5Tkbevvrc97OwE2TMxrxj8VQ8ZXQxJI4nQtEtYG7xuC",
+      "access_token": "887994085-zgDi6jdsW7ZXO1gLXcEP5syN3wpVGhmwNLipz3U3",
+      "access_token_secret": "tQ9w33JyTIkN9lFBWBGvGoFvV3Q9VQ7jcAFfFq4NlQ6zM"
+    }
+  },
+  "index": {
+    "index": "my_twitter_river",
+    "type": "status",
+    "bulk_size": 100,
+    "flush_interval": "5s"
+  }
+}

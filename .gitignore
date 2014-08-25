@@ -12,7 +12,7 @@
  
 # enable dirs
 !/ansible
-!/elasticsearch_indecies
+!/es_indecies
 !/samples
  
 # disable extra files
